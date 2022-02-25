@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card_img">
-            <img :src="movie.urlPoster" />
+            <img @error="replaceImage" :src="movie.urlPoster" />
         </div>
         <div class="card_rating">
             <span>{{ movie.rating }}</span>
@@ -36,6 +36,9 @@ export default {
         updateFavorite() {
             this.favorite = !this.favorite
             this.$emit('updated', this.movie.idIMDB)
+        },
+        replaceImage(e) {
+            e.target.src = require('../assets/no-image.png')
         }
     }
 }
