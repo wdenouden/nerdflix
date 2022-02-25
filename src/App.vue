@@ -1,15 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <MovieDashboard :movies="json_data.data.movies"/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MovieDashboard from './components/MovieDashboard.vue'
+import filmData from './assets/imdb-top-50.json'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MovieDashboard
+  },
+  data() {
+    return {
+      json_data: filmData
+    }
   }
 }
 </script>
@@ -17,12 +24,17 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
+body {
+  margin: 0;
+  padding: 0;
+  background: #1D1D1D;
+}
+
 #app {
   font-family: "Source San Pro";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #FFF;
 }
 </style>
+s
