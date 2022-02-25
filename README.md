@@ -1,24 +1,19 @@
 # nerdflix
 
-## Project setup
-```
-npm install
-```
+## Local setup
+  
+  * npm 8.3.1
+  * Vue 3.2.13
+  * Windows 11
 
-### Compiles and hot-reloads for development
+## Installation
 ```
+// Install dependencies
+npm install
+
+// Run app
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Usage
+Access the application in your browser at <http://localhost:8080/>
