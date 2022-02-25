@@ -23,7 +23,7 @@
       <div class="rating_count">
         <span><svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M8.99997 15.3311L3.97602 17.9464C3.60892 18.1375 3.18185 17.8253 3.25248 17.4175L4.21069 11.8856L0.15621 7.97222C-0.143023 7.6834 0.0205978 7.17679 0.432239 7.11756L6.04003 6.31069L8.55247 1.26989C8.73653 0.900607 9.26341 0.900607 9.44746 1.26989L11.9599 6.31069L17.5677 7.11756C17.9793 7.17679 18.143 7.6834 17.8437 7.97222L13.7892 11.8856L14.7475 17.4175C14.8181 17.8253 14.391 18.1375 14.0239 17.9464L8.99997 15.3311Z" fill="#F8E71C"/>
-        </svg> 5</span>
+        </svg> {{ totalCount }}</span>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
 
     <div class="movies">
       <div v-for="movie in filteredMovies" :key="movie.title">
-        <MovieCard :movie="movie" />
+        <MovieCard :movie="movie" :isFavorite="favoriteMovies.includes(movie.idIMDB)" @updated="updateCount" />
       </div>
     </div>
   </div>
@@ -80,7 +80,21 @@ export default {
     return {
       searchValue: '',
       selectedSort: 'asc',
-      selectedRating: 'Rating'
+      selectedRating: 'Rating',
+      totalCount: 0,
+      favoriteMovies: []
+    }
+  },
+  methods: {
+    updateCount(id) {
+      if(this.favoriteMovies.includes(id)) {
+        let i = this.favoriteMovies.indexOf(id);
+        this.favoriteMovies.splice(i, 1)
+        this.totalCount--
+      } else {
+        this.totalCount++
+        this.favoriteMovies.push(id)
+      }
     }
   },
   computed: {
@@ -92,7 +106,7 @@ export default {
           return movie.title.toUpperCase().includes(this.searchValue.toUpperCase())
         }) 
       }
-
+      
       sortedMovies = sortedMovies.sort((a, b) => {
         if(this.selectedSort == 'asc') {
           let fa = a.title.toLowerCase(), fb = b.title.toLowerCase()
@@ -173,7 +187,7 @@ export default {
 
   .title h1 {
     padding-left: 50px;
-    font-size: 36px;
+    font-size: 30px;
     margin: 0px;
     line-height: 122px;
   }
@@ -185,7 +199,7 @@ export default {
   }
 
   .filters {
-    margin: 0 50px;
+    margin: -25px 50px;
     display: flex;
     justify-content: space-between;
   }
