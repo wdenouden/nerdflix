@@ -20,8 +20,23 @@
         <h1>Movies</h1>
     </div>
 
-    <div class="movies" v-for="movie in movies" :key="movie.title">
-      <MovieCard :movie="movie" />
+    <div class="filters">
+      <div class="search">
+        <input name="search" placeholder="Search for a title">
+      </div>
+
+      <div class="sort">
+        <select v-model="selected_rating">
+          <option value="asc" selected>Title (A-Z)</option>
+          <option value="desc">Title (Z-A)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="movies">
+      <div v-for="movie in movies" :key="movie.title">
+        <MovieCard :movie="movie" />
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +51,11 @@ export default {
   },
   props: {
     movies: JSON
+  },
+  data() {
+    return {
+      selected_rating: 'asc'
+    }
   }
 }
 </script>
@@ -88,6 +108,22 @@ export default {
 
   .movies {
     margin: 80px 50px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
+  .filters {
+    margin: 0 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  input, select {
+    color: #FFF;
+    background: #131313;
+    border: 1px solid #2E2E2E;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 10px;
+  }
 </style>

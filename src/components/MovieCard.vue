@@ -16,12 +16,19 @@ export default {
 </script>
 
 <style scoped>
+    .card {
+        margin-right: 30px;
+        width: 182px;
+    }
+
     .card img {
         box-shadow: rgba(0, 0, 0, 0.3) 0 5px 10px;
+        min-height: 268px;
     }
 
     .card p {
         font-size: 12px;
+        overflow-wrap: break-word;
     }
 
     .card span {
